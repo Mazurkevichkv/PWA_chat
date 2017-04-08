@@ -30,7 +30,7 @@ export class AppComponent {
 
         console.log(this.link);
 
-        this.http.get(this.link, {})
+        this.http.get(this.link, { withCredentials: true })
             // .map((res) => {JSON.parse(res.text())})
             .subscribe(
                 (res) => {
