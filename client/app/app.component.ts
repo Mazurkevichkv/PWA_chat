@@ -21,7 +21,23 @@ export class AppComponent {
         name: "Alice"
     };
 
+    link: string = "https://likeit-risingapp.herokuapp.com/";
+
     constructor(private http: Http) {
+    }
+
+    private apiSend() {
+
+        console.log(this.link);
+
+        this.http.post(this.link, {})
+            .map((res) => {JSON.parse(res.text())})
+            .subscribe(
+                (res) => {
+                    console.log(res);
+                },
+                err => console.error(err)
+            );
     }
 
     private logOut() {

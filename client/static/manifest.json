@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+  "version": "0.0.1b",
+
+  "default_locale": "en",
+  "description": "A plain text description",
+
+  "background_color": "#ffffff",
+  "name": "Hubs Messenger",
+  "short_name": "Hubs",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "app-icon.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+
+  "author": "RisingApp"
+}

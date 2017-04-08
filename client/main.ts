@@ -5,12 +5,14 @@ import "hammerjs";
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule }              from './app/app.module';
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+function main(): Promise<any> {
 
-export function main(): Promise<any> {
-    return platformBrowserDynamic()
-        .bootstrapModule(AppModule)
+    return navigator.serviceWorker.register("workers/test-worker.bundle.js", {}).then(() => {
+        return platformBrowserDynamic().bootstrapModule(AppModule)
+    })
         //.then(decorateModuleRef)
         .catch((err) => console.error(err));
 }
+
+export default main();
 

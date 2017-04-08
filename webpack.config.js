@@ -1,6 +1,8 @@
-var webpack = require("webpack");
-var path = require("path");
-var HtmlWebpackPlugin = require("html-webpack-plugin");
+let webpack = require("webpack");
+let path = require("path");
+let HtmlWebpackPlugin = require("html-webpack-plugin");
+let HtmlWebpackExcludeAssetsPlugin = require("html-webpack-exclude-assets-plugin");
+let CopyWebpackPlugin = require("copy-webpack-plugin");
 
 function root(p) {
     return path.resolve(__dirname, p);
@@ -8,7 +10,8 @@ function root(p) {
 
 module.exports = {
     entry: {
-        "app": "./client/main"
+        "app": "./client/main",
+        "workers/test-worker": "./client/workers/test-worker"
     },
     output: {
         path: root("public"),
@@ -59,11 +62,23 @@ module.exports = {
     target: "web",
     plugins: [
 
+        new CopyWebpackPlugin(
+            [{
+                from: root("./client/static"),
+                to: root("./public")
+            }]
+        ),
+
         new HtmlWebpackPlugin({
             title: "My App",
             filename: root("./public/index.html"),
-            template: root("./client/index.html")
-        })
+            template: root("./client/index.html"),
+            excludeAssets: [
+                /workers/
+            ]
+        }),
+
+        new HtmlWebpackExcludeAssetsPlugin()
         /*,
 
 
