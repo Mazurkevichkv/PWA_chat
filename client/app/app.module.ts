@@ -10,6 +10,7 @@ import {LoginComponent} from "./auth/login/login.component";
 import {RegistrationComponent} from "./auth/registration/registration.component";
 import {HabsComponent} from "./habs/habs.component";
 import {HabsModule} from "./habs/habs.module";
+import {CookieXSRFStrategy, XSRFStrategy} from "@angular/http";
 
 export const routes: Routes = [
     { path: '', redirectTo: 'auth', pathMatch: 'full' },
@@ -34,7 +35,10 @@ export const routes: Routes = [
     declarations: [
         AppComponent,
     ],
-    bootstrap:    [ AppComponent ]
+    bootstrap:    [ AppComponent ],
+    providers: [
+        { provide: XSRFStrategy, useValue: new CookieXSRFStrategy("Cookie-token", "X-CSRF-TOKEN")},
+    ]
 })
 
 export class AppModule { }
