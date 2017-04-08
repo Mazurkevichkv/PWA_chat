@@ -6,6 +6,7 @@ import { AppComponent }  from "./app.component";
 import {RouterModule} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
 import {RegistrationComponent} from "./registration/registration.component";
+import {CookieXSRFStrategy, XSRFStrategy} from "@angular/http";
 
 @NgModule({
     imports:      [
@@ -29,7 +30,10 @@ import {RegistrationComponent} from "./registration/registration.component";
         LoginComponent,
         RegistrationComponent
     ],
-    bootstrap:    [ AppComponent ]
+    bootstrap:    [ AppComponent ],
+    providers: [
+        { provide: XSRFStrategy, useValue: new CookieXSRFStrategy("Cookie-token", "X-CSRF-TOKEN")},
+    ]
 })
 
 export class AppModule { }
