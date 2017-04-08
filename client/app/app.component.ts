@@ -30,8 +30,8 @@ export class AppComponent {
 
         console.log(this.link);
 
-        this.http.post(this.link, {})
-            .map((res) => {JSON.parse(res.text())})
+        this.http.get(this.link, {})
+            // .map((res) => {JSON.parse(res.text())})
             .subscribe(
                 (res) => {
                     console.log(res);
@@ -41,7 +41,7 @@ export class AppComponent {
     }
 
     private logOut() {
-        this.http.post("http://localhost:8081/logout",  {})
+        this.http.post("https://likeit-risingapp.herokuapp.com/logout",  {})
             .map((res) => {JSON.parse(res.text())})
             .subscribe(
                 (res) => {
