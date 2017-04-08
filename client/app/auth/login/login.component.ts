@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
-import {Headers, Http, RequestOptions} from "@angular/http";
+import {Http, Headers, RequestOptions} from "@angular/http";
+import {Router} from "@angular/router";
 
 export class User {
     username: string;
@@ -7,7 +8,7 @@ export class User {
 }
 
 @Component({
-    selector: "auth",
+    selector: "login",
     styles: [require("./login.styles.scss")],
     template: require("./login.template.html")
 })
@@ -16,7 +17,12 @@ export class User {
 export class LoginComponent {
     private user = new User();
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private router: Router) {
+        this.router = router;
+    }
+
+    private isValid(field) {
+        return field;
     }
 
     private logIn() {
@@ -39,5 +45,6 @@ export class LoginComponent {
                 },
                 err => { console.error(err) }
             );
+        this.router.navigate(['/habs']);
     }
 }

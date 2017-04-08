@@ -17,6 +17,10 @@
     align-self: center;
   }
 
+  &--input.ng-invalid.ng-pristine {
+    color: red;
+  }
+
   &--link {
     float: right;
     text-decoration: none;

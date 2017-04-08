@@ -1,4 +1,7 @@
 .registration {
+  .mat-placeholder-required {
+    color: green;
+  }
 
   &--form {
     width: 400px;
@@ -12,6 +15,9 @@
   &--button {
     align-self: center;
     width: 150px;
+  }
+
+  &--input.ng-touched.ng-invalid {
   }
 
   &--link {
