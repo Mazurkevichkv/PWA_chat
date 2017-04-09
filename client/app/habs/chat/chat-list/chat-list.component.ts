@@ -13,6 +13,7 @@ import {ChatList} from "../chat-models/chat-list.model";
 
 export class ChatListComponent {
     public list:any;
+    public messages:any;
 
     constructor(private chatService: ChatService, private http:Http) {
         this.chatService = chatService;
@@ -45,11 +46,48 @@ export class ChatListComponent {
         return this.list && this.list.chatCards;
     }
 
+    public get messageList () {
+        return this.messages;
+    }
+
     private openChat (item) {
-       // this.chatService.loadChat(item.roomId);
+        this.loadChat(item.roomId);
         this.chatList.forEach(item => {
             item.active = false
         });
         item.active = true;
     }
+
+    public showLikes (item) {
+        return !item.own && item.likes !== '0';
+    }
+
+    public checkLike (item) {
+        item.isLike = true;
+        item.likes++;
+    }
+
+    public getPhotoUrl (url) {
+        return `${url}&${parseInt(Math.random()*1000)}`
+    }
+
+    public loadChat (id: number) {
+        let request = new RequestOptions();
+        request.headers = new Headers();
+        request.headers.set("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+        request.withCredentials = true;
+
+        let response;
+
+        this.http.get(`https://likeit-risingapp.herokuapp.com/rest/rooms/${id}/messages?count=${300}`, request)
+            .map((res) => {response = JSON.parse(res.text())})
+            .subscribe(
+                () => {
+                    this.messages = response.data.messages;
+                },
+                err => { console.error(err) }
+            );
+    }
 }
+
+

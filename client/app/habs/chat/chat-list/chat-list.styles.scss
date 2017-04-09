@@ -4,6 +4,7 @@
   border-right: #dedede 1px solid;
   height: 100%;
   z-index: 2;
+  background: white;
 
   &--addIcon {
     bottom: 30px;
@@ -29,6 +30,56 @@
     &:hover, &-active {
       background: #9ed0ff;;
       transition: all .3s ease;
+    }
+  }
+}
+
+.chatMain {
+  margin-left: 30vw;
+  width: 100%;
+  padding-bottom: 150px;
+  padding-top: 50px;
+
+  &--card {
+    width: 60%;
+    margin: 20px;
+    margin-left: calc(30%);
+
+    &-own {
+      margin-left: calc(40px);
+    }
+
+    &User {
+      width: 60px;
+      height: 60px;
+      margin-top: -14px;
+      margin-left: -10px;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+  }
+  &--disabled {
+    pointer-events: none;
+  }
+
+  &--likes {
+    position: absolute;
+    bottom: 13px;
+    left: 57px;
+    color: #583232;
+  }
+
+  &--likeIcon {
+    padding: 0 19px;
+    color: #0076e2;
+    width: 30px;
+    opacity: .4;
+    transition: all .3s ease;
+    cursor: pointer;
+
+    &:hover, &-selected {
+      transition: all .3s ease;
+      opacity: 1;
     }
   }
 }

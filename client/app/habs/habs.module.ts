@@ -8,7 +8,7 @@ import {ChatListComponent} from "./chat/chat-list/chat-list.component";
 import {ChatViewComponent} from "./chat/chat-view/chat-view.component";
 import {ChatHeaderComponent} from "./chat/chat-view/chat-header/chat-header.component";
 import {ChatMessageCreatorComponent} from "./chat/chat-view/chat-message-creator/chat-message-creator.component";
-import {ChatMainComponent} from "./chat/chat-view/chat-main/chat-main.component";
+
 
 @NgModule({
     imports:      [
@@ -27,8 +27,7 @@ import {ChatMainComponent} from "./chat/chat-view/chat-main/chat-main.component"
         ChatListComponent,
         ChatViewComponent,
         ChatHeaderComponent,
-        ChatMessageCreatorComponent,
-        ChatMainComponent
+        ChatMessageCreatorComponent
     ],
     bootstrap:    [ HabsComponent ]
 })
