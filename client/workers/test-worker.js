@@ -2,36 +2,65 @@ import toolbox from "sw-toolbox";
 import Stomp from "stompjs";
 //import { Store } from "./Store";
 
-let socket = new WebSocket("ws://172.20.10.14:8080/ws-api");
+let stompClient;
 
-let stompClient = Stomp.over(socket);
+function initWS() {
+    let socket = new WebSocket("ws://likeit-risingapp.herokuapp.com/ws-api");
 
-stompClient.connect({}, function (frame) {
+    socket.onclose = function(event) {
+        if (event.wasClean) {
+            console.log('Соединение закрыто чисто');
+        } else {
+            console.log('Обрыв соединения'); // например, "убит" процесс сервера
+        }
+        console.log('Код: ' + event.code + ' причина: ' + event.reason);
+    };
 
-    console.log("Connected: " + frame);
+    return Stomp.over(socket);
+}
 
-    stompClient.subscribe("/topic/3", function (greeting) {
-        console.log(JSON.parse(greeting.body).content);
+self.addEventListener("install", (event) => {
+    stompClient = initWS();
+});
+
+
+self.addEventListener("activate", (event) => {
+
+    stompClient.connect({}, function (frame) {
+
+        console.log("WS Connected: " + frame);
+
+        stompClient.subscribe("/chat/1", (msg) => {
+            console.log(msg);
+        });
+
+        stompClient.send("/chat/1", {}, JSON.stringify({
+            time: (new Date()).getMilliseconds(),
+            status: "STATUS_CREATED",
+            text: "Hello World!",
+            attachments: []
+        }));
+
     });
 
-    stompClient.send("/app/chat/3", {}, JSON.stringify({
-        "name": "Nick"
-    }));
+
 });
 
 toolbox.options.debug = true;
 
 toolbox.precache(['/index.html', '/app.bundle.js', '/images/logo.png']);
-toolbox.router.any("/(.*)", function(request, values) {
-    console.log(request, values)
+
+toolbox.router.get("/rest/rooms/([0-9]+)/messages/(.*)", function(request, values) {
+
+    console.log("Entering room: ", request, values);
+    console.log(stompClient);
+
 });
 
-/*
-toolbox.router.get(':foo/index.html', function(request, values) {
-    return new Response('Handled a request for ' + request.url +
-        ', where foo is "' + values.foo + '"');
+toolbox.router.post("/rest/rooms/([0-9]+)/messages/(.*)", (request, values) => {
+
+    console.log("Sending message: ", request, values);
 });
-*/
 
 // For requests to other origins, specify the origin as an option
 /*

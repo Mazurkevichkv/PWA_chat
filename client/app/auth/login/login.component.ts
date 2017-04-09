@@ -39,13 +39,22 @@ export class LoginComponent {
         console.log(request);
 
         this.http.post("https://likeit-risingapp.herokuapp.com/login", body.toString(), request) //JSON.stringify(this.user))
-            //.map((res) => {JSON.parse(res.text())})
+            //.
+            .map((res) => JSON.parse(res.text()))
             .subscribe(
                 (res) => {
-                    console.log(res);
+
+                    this.router.navigate(['/habs']);
+                    console.log("Success", res);
                 },
-                err => { console.error(err) }
+                (err) => {
+                    if(err.status == 401) {
+                        console.error("Wrong login or password.");
+                    }
+                    else if(err.status == 404) {
+                        console.error("Server is not found.");
+                    }
+                }
             );
-        this.router.navigate(['/habs']);
     }
 }

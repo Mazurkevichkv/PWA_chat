@@ -6,7 +6,6 @@ import { AppComponent }  from "./app.component";
 import {RouterModule, Routes} from "@angular/router";
 import {AuthModule} from "./auth/auth.module";
 import {AuthComponent} from "./auth/auth.component";
-import {LoginComponent} from "./auth/login/login.component";
 import {RegistrationComponent} from "./auth/registration/registration.component";
 import {HabsComponent} from "./habs/habs.component";
 import {HabsModule} from "./habs/habs.module";
