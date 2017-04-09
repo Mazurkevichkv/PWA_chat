@@ -17,13 +17,4 @@ export class ChatMessageCreatorComponent {
         this.currMessage = new ChatCard({});
         this.chatService = chatService;
     }
-
-    private addMessage () {
-        this.chatService.updateChatList(this.currMessage);
-        console.log('sr' , this.chatService.chatList);
-        this.zone.run(() => {});
-
-       // this.currMessage = new ChatCard({});
-
-    }
 }

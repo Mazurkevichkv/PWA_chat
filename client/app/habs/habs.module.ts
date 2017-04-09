@@ -4,7 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { MaterialModule } from '@angular/material';
 import {RouterModule} from "@angular/router";
 import {HabsComponent} from "./habs.component";
-import {ChatListComponent, CreateChatComponent} from "./chat/chat-list/chat-list.component";
+import {ChatListComponent} from "./chat/chat-list/chat-list.component";
 import {ChatViewComponent} from "./chat/chat-view/chat-view.component";
 import {ChatHeaderComponent} from "./chat/chat-view/chat-header/chat-header.component";
 import {ChatMessageCreatorComponent} from "./chat/chat-view/chat-message-creator/chat-message-creator.component";

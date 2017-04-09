@@ -1,16 +1,20 @@
+const DEFAULT_URL = 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSKKSl5SxNO-zFITe-DfpNNZWzByruYk75jV1-KSv-REefCkK8u';
+
 export class ChatCard {
     constructor(card) {
-        this.name = card.name;
-        this.imageUrl = card.imageUrl;
-        this.message = card.message;
-        this.dateTime = card.dateTime;
-        this.id = card.id;
+        this.chatName = card.chatName;
+        this.imageUrl = card.imageUrl || DEFAULT_URL;
+        this.lastMessage = card.lastMessage;
+        this.lastMessageAuthorName = card.lastMessageAuthorName;
+        this.sendTime = card.sendTime;
+        this.roomId = card.roomId;
 
     }
 
-    public name: string;
+    public chatName: string;
     public imageUrl: any;
-    public message: string;
-    public dateTime: string;
-    public id: number;
+    public lastMessage: string;
+    public lastMessageAuthorName: string;
+    public sendTime: string;
+    public roomId: number;
 }
