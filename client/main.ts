@@ -7,7 +7,9 @@ import { AppModule }              from './app/app.module';
 
 function main(): Promise<any> {
 
-    return navigator.serviceWorker.register("workers/test-worker.bundle.js", {}).then(() => {
+    return navigator.serviceWorker.register("test-worker.bundle.js", {
+        scope: "/"
+    }).then(() => {
         return platformBrowserDynamic().bootstrapModule(AppModule)
     })
         //.then(decorateModuleRef)

@@ -4,6 +4,12 @@ import Stomp from "stompjs";
 
 let stompClient;
 
+let version = "v1::";
+toolbox.options.debug = true;
+
+toolbox.precache(['/', '/login', '/index.html', '/app.bundle.js', '/images/logo.png', 'test-worker.bundle.js']);
+
+
 function initWS() {
     let socket = new WebSocket("wss://likeit-risingapp.herokuapp.com/ws-api");
 
@@ -19,48 +25,83 @@ function initWS() {
     return Stomp.over(socket);
 }
 
-self.addEventListener("install", (event) => {
-    stompClient = initWS();
+
+self.addEventListener("install", function(event) {
+    console.log('WORKER: install event in progress.');
+    event.waitUntil(function() {
+        stompClient = initWS();
+        console.log('WORKER: install completed');
+    });
 });
 
 
 self.addEventListener("activate", (event) => {
 
-    stompClient.connect({}, function (frame) {
+    return event.waitUntil(() => {
 
-        console.log("WS Connected: " + frame);
+        stompClient.connect({}, function (frame) {
 
-        stompClient.subscribe("/chat/1", (msg) => {
-            console.log(msg);
+            console.log("WS Connected: " + frame);
+
+            stompClient.subscribe("/chat/1", (msg) => {
+                console.log(msg);
+            });
+
+            /*
+            stompClient.send("/chat/1", {}, JSON.stringify({
+                time: (new Date()).getMilliseconds(),
+                status: "STATUS_CREATED",
+                text: "Hello World!",
+                attachments: []
+            }));
+            */
+
         });
 
-        stompClient.send("/chat/1", {}, JSON.stringify({
-            time: (new Date()).getMilliseconds(),
-            status: "STATUS_CREATED",
-            text: "Hello World!",
-            attachments: []
-        }));
-
+        return self.clients.claim()
     });
-
-
 });
 
-toolbox.options.debug = true;
 
-toolbox.precache(['/index.html', '/app.bundle.js', '/images/logo.png']);
 
-toolbox.router.get("/rest/rooms/([0-9]+)/messages/(.*)", function(request, values) {
+/*toolbox.router.get("/rest/rooms/(:id)*", function(request, values) {
+
+    console.log("Getting rooms: ", request, values);
+    console.log(stompClient);
+
+});*/
+
+toolbox.router.any('/*', toolbox.networkFirst);
+
+toolbox.router.post("/login", function(request, values) {
+
+    console.log("Login: ", request, values);
+    console.log(stompClient);
+
+    return Response({
+        status: 200,
+        body: {
+
+        }
+    });
+});
+
+/*
+
+toolbox.router.get("/rest/rooms/(:id)/messages*", function(request, values) {
+
+    toolbox.networkFirst(request);
 
     console.log("Entering room: ", request, values);
     console.log(stompClient);
 
 });
 
-toolbox.router.post("/rest/rooms/([0-9]+)/messages/(.*)", (request, values) => {
+toolbox.router.post("/rest/rooms/(:id)/messages*", (request, values) => {
 
     console.log("Sending message: ", request, values);
 });
+*/
 
 // For requests to other origins, specify the origin as an option
 /*

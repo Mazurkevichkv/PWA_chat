@@ -11,7 +11,7 @@ function root(p) {
 module.exports = {
     entry: {
         "app": "./client/main",
-        "workers/test-worker": "./client/workers/test-worker"
+        "test-worker": "./client/workers/test-worker"
     },
     output: {
         path: root("public"),
