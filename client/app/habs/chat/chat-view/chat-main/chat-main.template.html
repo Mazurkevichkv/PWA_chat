@@ -1,20 +1,20 @@
 <section *ngIf="messageList" class="chatMain">
   <md-list>
-   <md-card *ngFor="let item of messageList" class="chatMain--card example-card">
+   <md-card *ngFor="let item of messageList" class="chatMain--card example-card" [ngClass]="{'chatMain--card-own': item.own}">
     <md-card-header>
 
-     <!--<div md-card-avatar src="{{item.authorPhotoUrl}}" class="example-header-image"></div>-->
+     <img md-card-avatar [attr.src]='item.authorPhotoUrl' class="chatMain--cardUser"/>
      <md-card-title>{{item.authorName}}</md-card-title>
      <md-card-subtitle>{{item.sendTime}}</md-card-subtitle>
     </md-card-header>
-    <img md-card-image src="http://cdn3-www.cattime.com/assets/uploads/2011/08/best-kitten-names-1.jpg">
+    <img *ngFor="let att of item.attachments" md-card-image [attr.src]='att.url'/>
     <md-card-content>
      <p>
       {{item.text}}
      </p>
     </md-card-content>
     <md-card-actions>
-     <md-icon class="chatMain--likeIcon">favorite</md-icon><span>{{item.likes}}</span>
+     <md-icon (click)="checkLike(item)" [ngClass]="{'chatMain--disabled': item.isLike}" class="chatMain--likeIcon">favorite</md-icon><span *ngIf="item.isLike" class="chatMain--likes">{{item.likes}}</span>
     </md-card-actions>
    </md-card>
   </md-list>

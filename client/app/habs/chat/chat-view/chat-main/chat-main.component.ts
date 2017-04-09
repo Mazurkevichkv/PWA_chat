@@ -34,4 +34,13 @@ export class ChatMainComponent {
                 err => { console.error(err) }
             );
     }
+
+    public showLikes (item) {
+        return !item.own && item.likes !== '0';
+    }
+
+    public checkLike (item) {
+        item.isLike = true;
+        item.likes++;
+    }
 }
