@@ -68,7 +68,7 @@ export class ChatListComponent {
     }
 
     public getPhotoUrl (url) {
-        return `${url}&${parseInt(Math.random()*1000)}`
+        return `${url}&${Math.round(Math.random()*1000)}`
     }
 
     public loadChat (id: number) {
