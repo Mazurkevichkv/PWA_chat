@@ -1,7 +1,8 @@
 <section class="chatMain">
   <md-list>
-   <md-card *ngFor="let chat of chatList" class="example-card">
+   <md-card *ngFor="let chat of chatList" class="chatMain--card example-card">
     <md-card-header>
+
      <div md-card-avatar class="example-header-image"></div>
      <md-card-title>Shiba Inu</md-card-title>
      <md-card-subtitle>Dog Breed</md-card-subtitle>
@@ -15,8 +16,7 @@
      </p>
     </md-card-content>
     <md-card-actions>
-     <button md-button>LIKE</button>
-     <button md-button>SHARE</button>
+     <md-icon class="chatMain--likeIcon">favorite</md-icon>
     </md-card-actions>
    </md-card>
   </md-list>

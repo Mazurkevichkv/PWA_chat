@@ -9,7 +9,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
 $app-color-primary: mat-palette($mat-blue-grey);
-$app-color-accent: mat-palette($mat-teal, A200, A100, A400);
+$app-color-accent: mat-palette($mat-blue, A400, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $app-color-warn: mat-palette($mat-red);

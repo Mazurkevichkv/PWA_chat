@@ -1,4 +1,25 @@
 .chatList {
   width: 30vw;
   position: fixed;
+  border-right: #dedede 1px solid;
+  height: 100%;
+  z-index: 2;
+
+  &--addIcon {
+    bottom: 30px;
+    right: 30px;
+    transform: scale(1.5);
+    color: white;
+    opacity: .6;
+    position: absolute;
+    transition: all .3s ease;
+    background: #9050c1;
+    border-radius: 50%;
+
+    &:hover {
+      opacity: 1;
+      transform: scale(1.9);
+      transition: all .3s ease;
+    }
+  }
 }

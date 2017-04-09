@@ -1,0 +1,17 @@
+<h2 md-dialog-title>CHAT WITH YOUR FRIENDS</h2>
+<md-dialog-content>
+    <md-input-container>
+        <input type="text" mdInput [formControl]="myControl" [mdAutocomplete]="auto">
+    </md-input-container>
+
+    <md-autocomplete #auto="mdAutocomplete" [displayWith]="displayFn">
+        <md-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{ option.name }}
+        </md-option>
+    </md-autocomplete>
+</md-dialog-content>
+<md-dialog-actions>
+    <button md-button md-dialog-close>Create</button>
+</md-dialog-actions>
+
+

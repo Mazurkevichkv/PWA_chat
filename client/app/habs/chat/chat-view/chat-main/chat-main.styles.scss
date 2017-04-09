@@ -1,3 +1,22 @@
 .chatMain {
+  &--card {
+    width: 70%;
+    margin: 20px;
+    margin-left: calc(30% - 80px);
+  }
 
+  &--likeIcon {
+    padding: 0 19px;
+    color: #0076e2;
+    width: 30px;
+    height: 40px;
+    opacity: .4;
+    transition: all .3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transition: all .3s ease;
+      opacity: 1;
+    }
+  }
 }

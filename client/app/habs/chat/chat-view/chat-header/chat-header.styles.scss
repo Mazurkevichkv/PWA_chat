@@ -1,8 +1,24 @@
 .chatHeader {
-  height: 50px;
   position: fixed;
   z-index: 1;
-  background: white;
-  width: 100%;
   top: 0;
+  display: flex;
+  width: calc(100% - 30vw);
+  height: 50px;
+  justify-content: space-between;
+
+  &--likeIcon {
+    margin-top: 10px;
+    padding: 0 19px;
+    width: 30px;
+    height: 40px;
+    opacity: .4;
+    transition: all .3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transition: all .3s ease;
+      opacity: 1;
+    }
+  }
 }
