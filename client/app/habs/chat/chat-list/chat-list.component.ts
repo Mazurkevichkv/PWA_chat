@@ -46,7 +46,7 @@ export class ChatListComponent {
     }
 
     private openChat (item) {
-        this.chatService.loadChat(item.roomId);
+       // this.chatService.loadChat(item.roomId);
         this.chatList.forEach(item => {
             item.active = false
         });
