@@ -4,6 +4,7 @@ export class ChatCard {
         this.imageUrl = card.imageUrl;
         this.message = card.message;
         this.dateTime = card.dateTime;
+        this.id = card.id;
 
     }
 
@@ -11,4 +12,5 @@ export class ChatCard {
     public imageUrl: any;
     public message: string;
     public dateTime: string;
+    public id: number;
 }

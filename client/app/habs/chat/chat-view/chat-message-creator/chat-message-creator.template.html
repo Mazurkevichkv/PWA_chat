@@ -1,4 +1,4 @@
 <section class="chatMessageCreator">
-    <textarea class="chatMessageCreator--textarea" placeholder=""></textarea>
-    <md-icon class="chatMessageCreator--sendIcon">send</md-icon>
+    <textarea class="chatMessageCreator--textarea" [(ngModel)]="currMessage.message" placeholder=""></textarea>
+    <md-icon class="chatMessageCreator--sendIcon" (click)="addMessage()">send</md-icon>
 </section>

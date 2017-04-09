@@ -1,5 +1,5 @@
 <md-list class="chatList">
-    <md-list-item *ngFor="let chat of chatList">
+    <md-list-item class="chatList--item" *ngFor="let chat of chatList" (click)="openChat(chat)" [ngClass]="{'chatList--item-active': chat.active}">
         <img md-list-avatar src="http://cdn3-www.cattime.com/assets/uploads/2011/08/best-kitten-names-1.jpg" alt="...">
         <h3 md-line> {{chat.name}} </h3>
         <p md-line>
@@ -9,4 +9,3 @@
     </md-list-item>
     <md-icon (click)="openDialog()" class="chatList--addIcon">add circle</md-icon>
 </md-list>
-<create-chat></create-chat>

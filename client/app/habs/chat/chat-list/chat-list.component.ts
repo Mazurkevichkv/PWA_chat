@@ -13,8 +13,13 @@ import {FormControl} from "@angular/forms";
 
 
 export class ChatListComponent {
+    public chatList:any;
+
     constructor(private chatService: ChatService) {
         this.chatService = chatService;
+        // this.chatService.chatListStream.subscribe((list) => {
+        //  //   this.chatList = list;
+        // })
     }
 
     //selectedOption: string;
@@ -25,9 +30,18 @@ export class ChatListComponent {
     //         this.selectedOption = result;
     //     });
     // }
-
+    //
     public get chatList () {
+        console.log(this.chatService.chatList);
         return this.chatService.chatList;
+    }
+
+    private openChat (item) {
+        this.chatService.loadChat(item.id);
+        this.chatList.forEach(item => {
+            item.active = false
+        });
+        item.active = true;
     }
 }
 
@@ -43,6 +57,7 @@ class User {
     }
     public name: string
 }
+
 export class CreateChatComponent {
     // constructor() {}
     //

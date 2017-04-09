@@ -28,11 +28,7 @@ import {ChatMainComponent} from "./chat/chat-view/chat-main/chat-main.component"
         ChatViewComponent,
         ChatHeaderComponent,
         ChatMessageCreatorComponent,
-        ChatMainComponent,
-        CreateChatComponent
-    ],
-    entryComponents: [
-        CreateChatComponent
+        ChatMainComponent
     ],
     bootstrap:    [ HabsComponent ]
 })

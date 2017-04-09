@@ -30,6 +30,7 @@ export class LoginComponent {
         let request = new RequestOptions();
         request.headers = new Headers();
         request.headers.set("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+        request.withCredentials = true;
 
         let body:URLSearchParams = new URLSearchParams();
         body.set("username", this.user.username);
@@ -37,14 +38,15 @@ export class LoginComponent {
 
         console.log(request);
 
-        this.http.post("http://localhost:8081/login", body.toString(), request) //JSON.stringify(this.user))
+        this.http.post("https://likeit-risingapp.herokuapp.com/login", body.toString(), request)
             .map((res) => {JSON.parse(res.text())})
             .subscribe(
                 (res) => {
                     console.log(res);
+                    this.router.navigate(['/habs']);
                 },
                 err => { console.error(err) }
             );
-        this.router.navigate(['/habs']);
+
     }
 }
