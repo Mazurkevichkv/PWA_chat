@@ -13,12 +13,21 @@
     opacity: .6;
     position: absolute;
     transition: all .3s ease;
-    background: #9050c1;
+    background: #0076e2;
     border-radius: 50%;
 
     &:hover {
       opacity: 1;
       transform: scale(1.9);
+      transition: all .3s ease;
+    }
+  }
+
+  &--item {
+    transition: all .3s ease;
+    cursor: pointer;
+    &:hover, &-active {
+      background: #9ed0ff;;
       transition: all .3s ease;
     }
   }

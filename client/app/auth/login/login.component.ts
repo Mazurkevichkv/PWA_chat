@@ -39,11 +39,9 @@ export class LoginComponent {
         console.log(request);
 
         this.http.post("https://likeit-risingapp.herokuapp.com/login", body.toString(), request) //JSON.stringify(this.user))
-            //.
             .map((res) => JSON.parse(res.text()))
             .subscribe(
                 (res) => {
-
                     this.router.navigate(['/habs']);
                     console.log("Success", res);
                 },

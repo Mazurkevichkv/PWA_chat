@@ -1,22 +1,20 @@
-<section class="chatMain">
+<section *ngIf="messageList" class="chatMain">
   <md-list>
-   <md-card *ngFor="let chat of chatList" class="chatMain--card example-card">
+   <md-card *ngFor="let item of messageList" class="chatMain--card example-card">
     <md-card-header>
 
-     <div md-card-avatar class="example-header-image"></div>
-     <md-card-title>Shiba Inu</md-card-title>
-     <md-card-subtitle>Dog Breed</md-card-subtitle>
+     <!--<div md-card-avatar src="{{item.authorPhotoUrl}}" class="example-header-image"></div>-->
+     <md-card-title>{{item.authorName}}</md-card-title>
+     <md-card-subtitle>{{item.sendTime}}</md-card-subtitle>
     </md-card-header>
     <img md-card-image src="http://cdn3-www.cattime.com/assets/uploads/2011/08/best-kitten-names-1.jpg">
     <md-card-content>
      <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
+      {{item.text}}
      </p>
     </md-card-content>
     <md-card-actions>
-     <md-icon class="chatMain--likeIcon">favorite</md-icon>
+     <md-icon class="chatMain--likeIcon">favorite</md-icon><span>{{item.likes}}</span>
     </md-card-actions>
    </md-card>
   </md-list>

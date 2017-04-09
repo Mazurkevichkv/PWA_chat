@@ -11,6 +11,7 @@ import {ChatService} from "../chat.service";
 export class ChatViewComponent{
     constructor(private chatService: ChatService) {
         this.chatService = chatService;
+
     }
 
     ngOnInit() {

@@ -1,10 +1,10 @@
 <md-list class="chatList">
-    <md-list-item *ngFor="let chat of chatList">
-        <img md-list-avatar src="http://cdn3-www.cattime.com/assets/uploads/2011/08/best-kitten-names-1.jpg" alt="...">
-        <h3 md-line> {{chat.name}} </h3>
+    <md-list-item class="chatList--item" *ngFor="let chat of chatList" (click)="openChat(chat)" [ngClass]="{'chatList--item-active': chat.active}">
+        <img md-list-avatar src="{{chat.imageUrl}}" alt="...">
+        <h3 md-line> {{chat.chatName}} </h3>
         <p md-line>
-            <span> {{chat.dateTime}} </span>
-            <span class="demo-2"> -- {{chat.message}} </span>
+            <span> {{chat.lastMessageAuthorName}} </span>
+            <span class="demo-2"> -- {{chat.lastMessage}} </span>
         </p>
     </md-list-item>
     <md-icon (click)="openDialog()" class="chatList--addIcon">add circle</md-icon>

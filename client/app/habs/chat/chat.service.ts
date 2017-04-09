@@ -1,49 +1,22 @@
 import { Injectable } from '@angular/core';
 import {ChatList} from "./chat-models/chat-list.model";
+import {Http, RequestOptions, Headers} from "@angular/http";
+import {Subject, Observable, BehaviorSubject} from "rxjs/Rx";
 
 @Injectable()
 export class ChatService {
-    private listMock: any = [
-        {
-            name: 'Kate',
-            message: 'Sabino freitass programs can pass the Turing Test by staring at the interrogator.',
-            dateTime: '12:06:1996'
-        },
-        {
-            name: 'Kate',
-            message: 'Sabino freitass programs can pass the Turing Test by staring at the interrogator.',
-            dateTime: '12:06:1996'
-        },
-        {
-            name: 'Kate',
-            message: 'Sabino freitass programs can pass the Turing Test by staring at the interrogator.',
-            dateTime: '12:06:1996'
-        },
-        {
-            name: 'Kate',
-            message: 'Sabino freitass programs can pass the Turing Test by staring at the interrogator.',
-            dateTime: '12:06:1996'
-        },
-        {
-            name: 'Kate',
-            message: 'Sabino freitass programs can pass the Turing Test by staring at the interrogator.',
-            dateTime: '12:06:1996'
-        },
-        {
-            name: 'Kate',
-            message: 'Sabino freitass programs can pass the Turing Test by staring at the interrogator.',
-            dateTime: '12:06:1996'
-        }
-    ];
 
-    private list: ChatList;
+    public list: ChatList;
 
-    constructor() {
-        this.list = new ChatList(this.listMock);
-        console.log(this.list);
+    private subject: Subject<any> = new Subject<any>();
+
+    constructor(private http: Http) {
+        this.http = http;
     }
 
-    public get chatList () {
-        return this.list.get();
+    public messagesList: any;
+
+    public getMessage(): Observable<any> {
+        return this.subject;
     }
 }
