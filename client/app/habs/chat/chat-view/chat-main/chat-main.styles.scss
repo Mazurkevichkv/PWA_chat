@@ -36,7 +36,7 @@
     transition: all .3s ease;
     cursor: pointer;
 
-    &:hover {
+    &:hover, &-selected {
       transition: all .3s ease;
       opacity: 1;
     }

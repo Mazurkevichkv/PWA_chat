@@ -7,14 +7,14 @@
      <md-card-title>{{item.authorName}}</md-card-title>
      <md-card-subtitle>{{item.sendTime}}</md-card-subtitle>
     </md-card-header>
-    <img *ngFor="let att of item.attachments" md-card-image [attr.src]='att.url'/>
+    <img *ngFor="let att of item.attachments" md-card-image [attr.src]='getPhotoUrl(att.url)'/>
     <md-card-content>
      <p>
       {{item.text}}
      </p>
     </md-card-content>
     <md-card-actions>
-     <md-icon (click)="checkLike(item)" [ngClass]="{'chatMain--disabled': item.isLike}" class="chatMain--likeIcon">favorite</md-icon><span *ngIf="item.isLike" class="chatMain--likes">{{item.likes}}</span>
+     <md-icon (click)="checkLike(item)" [ngClass]="{'chatMain--disabled chatMain--likeIcon-selected': item.isLike}" class="chatMain--likeIcon">favorite</md-icon><span *ngIf="item.isLike" class="chatMain--likes">{{item.likes}}</span>
     </md-card-actions>
    </md-card>
   </md-list>

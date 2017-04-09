@@ -43,4 +43,8 @@ export class ChatMainComponent {
         item.isLike = true;
         item.likes++;
     }
+
+    public getPhotoUrl (url) {
+        return `${url}&${parseInt(Math.random()*1000)}`
+    }
 }
