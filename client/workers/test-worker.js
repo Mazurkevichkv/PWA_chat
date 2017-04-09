@@ -5,7 +5,7 @@ import Stomp from "stompjs";
 let stompClient;
 
 function initWS() {
-    let socket = new WebSocket("ws://likeit-risingapp.herokuapp.com/ws-api");
+    let socket = new WebSocket("wss://likeit-risingapp.herokuapp.com/ws-api");
 
     socket.onclose = function(event) {
         if (event.wasClean) {
